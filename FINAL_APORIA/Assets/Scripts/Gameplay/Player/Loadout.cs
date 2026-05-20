@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class Loadout : MonoBehaviour
@@ -10,9 +11,10 @@ public class Loadout : MonoBehaviour
     public WeaponData SecondaryWeaponData;
     public WeaponData PrimaryWeaponData;
     public GameObject rifleCanvas, pistolCanvas;
+    public AudioClip WeaponSwap;
     private Vector3 pistolFirePoint;
 
-    bool primaryActive, secondaryActive;
+    public bool primaryActive, secondaryActive;
 
     // Start is called before the first frame update
     void Start()
@@ -116,6 +118,8 @@ public class Loadout : MonoBehaviour
 
             Debug.Log("Equipped primary");
 
+            playerWeapon.Audio.PlayOneShot(WeaponSwap);
+
             PrimaryWeaponData.SetData(playerWeapon);
 
             playerWeapon.gunModels[0].SetActive(true);
@@ -146,6 +150,8 @@ public class Loadout : MonoBehaviour
             }
 
             Debug.Log("Equipped secondary");
+
+            playerWeapon.Audio.PlayOneShot(WeaponSwap);
 
             SecondaryWeaponData.SetData(playerWeapon);
 

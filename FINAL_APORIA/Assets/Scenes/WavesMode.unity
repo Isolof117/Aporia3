@@ -623,7 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c77e424952cde0459b981db9096774f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 300
+  maxHealth: 100
   currentHealth: 0
   healthSlider: {fileID: 991196345}
   objectToHide: {fileID: 2043653505}
@@ -837,6 +837,14 @@ MonoBehaviour:
   playerWeapon: {fileID: 433014620}
   SecondaryWeaponData: {fileID: 0}
   PrimaryWeaponData: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+  rifleCanvas: {fileID: 1157892889}
+  pistolCanvas: {fileID: 864149711}
+  WeaponSwap: {fileID: 8300000, guid: c610bd3646f22364ba69b85b5d6f8199, type: 3}
+  primaryActive: 0
+  secondaryActive: 0
+>>>>>>> Stashed changes
 --- !u!1 &99794565
 GameObject:
   m_ObjectHideFlags: 0
@@ -4122,7 +4130,6 @@ GameObject:
   - component: {fileID: 433014619}
   - component: {fileID: 433014622}
   - component: {fileID: 433014620}
-  - component: {fileID: 433014623}
   m_Layer: 3
   m_Name: Player Gun
   m_TagString: Weapon
@@ -4168,11 +4175,17 @@ MonoBehaviour:
   - {fileID: 1580537111}
   bulletPrefab: {fileID: 3459593287664729163, guid: c9a0e60f7eebc714c85304643934b73c,
     type: 3}
+  playerLoadout: {fileID: 81473402}
   firePoint: {fileID: 342090825}
   MovingBoxCanvas: {fileID: 2362691423126922472}
   MovingBox: {fileID: 7952951526843707555}
   SkillCheckCanvas: {fileID: 1084634198}
   KeyInputs: {fileID: 887439672}
+  Audio: {fileID: 617689722}
+  GunSounds:
+  - {fileID: 8300000, guid: 016739a98ffc9264ea4e2772b6fcaaea, type: 3}
+  - {fileID: 8300000, guid: c165d42ce99a7b248bf11cc4bafea24c, type: 3}
+  - {fileID: 8300000, guid: ffe1195952e7b09409355e7ef09dcc69, type: 3}
   bulletVelocity: 30
   bulletSpread: 0.2
   fireRate: 1
@@ -4182,10 +4195,9 @@ MonoBehaviour:
   isShooting: 0
   bulletsPerBurst: 1
   reloadTime: 0
-  magazineSize: 20
+  magazineSize: 30
   bulletsLeft: 0
   isReloading: 0
-  ReloadAudio: {fileID: 617689722}
   currentMode: 0
 --- !u!33 &433014622
 MeshFilter:
@@ -4195,29 +4207,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433014618}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &433014623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433014618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72773c81d4d6db4418f265db83a590d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0.8
-  slider: {fileID: 8220147111227201249}
-  goalRect: {fileID: 4998342087807903578}
-  QTEActive: 0
-  widths:
-  - 200
-  - 150
-  - 100
-  - 75
-  - 50
-  ReloadSounds: []
 --- !u!1001 &461698405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7541,7 +7530,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5666a20c9ed358043ac042e851eda3c2, type: 3}
   - {fileID: 8300000, guid: 0b557ab35a132ac44a500141932fa96a, type: 3}
   - {fileID: 8300000, guid: 4249a37dc1497b34a87c65038705e727, type: 3}
-  - {fileID: 8300000, guid: 47a174948f084b54082bacdcd3396f84, type: 3}
+  - {fileID: 8300000, guid: 7513eb3bd9572c64fad4e947404299f3, type: 3}
   Sequence: {fileID: 1084634199}
   currentKey: 0
   isVisible: 0
@@ -16646,7 +16635,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 47a174948f084b54082bacdcd3396f84, type: 3}
   - {fileID: 8300000, guid: 4249a37dc1497b34a87c65038705e727, type: 3}
   - {fileID: 8300000, guid: 0b557ab35a132ac44a500141932fa96a, type: 3}
-  - {fileID: 8300000, guid: 5666a20c9ed358043ac042e851eda3c2, type: 3}
+  - {fileID: 8300000, guid: 7513eb3bd9572c64fad4e947404299f3, type: 3}
 --- !u!1 &8035855833761036318
 GameObject:
   m_ObjectHideFlags: 0
@@ -16808,14 +16797,25 @@ MonoBehaviour:
   gunModels: []
   bulletPrefab: {fileID: 2157706488818188934, guid: a10f1561d1b83d84686e44d747f28d68,
     type: 3}
+  playerLoadout: {fileID: 81473402}
   firePoint: {fileID: 5684510606733441204}
   MovingBoxCanvas: {fileID: 0}
   MovingBox: {fileID: 0}
   SkillCheckCanvas: {fileID: 0}
   KeyInputs: {fileID: 0}
+  Audio: {fileID: 617689722}
+  GunSounds:
+  - {fileID: 8300000, guid: 016739a98ffc9264ea4e2772b6fcaaea, type: 3}
+  - {fileID: 8300000, guid: c165d42ce99a7b248bf11cc4bafea24c, type: 3}
+  - {fileID: 8300000, guid: ffe1195952e7b09409355e7ef09dcc69, type: 3}
   bulletVelocity: 30
+<<<<<<< Updated upstream
   bulletSpread: 1.5
   fireRate: 0
+=======
+  bulletSpread: 1.2
+  fireRate: 3
+>>>>>>> Stashed changes
   nextFireTime: 0
   isAiControlled: 1
   target: {fileID: 283631891}
@@ -16825,8 +16825,12 @@ MonoBehaviour:
   magazineSize: 7
   bulletsLeft: 0
   isReloading: 0
+<<<<<<< Updated upstream
   ReloadAudio: {fileID: 0}
   currentMode: 0
+=======
+  currentMode: 1
+>>>>>>> Stashed changes
 --- !u!195 &8976609277826305723
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -16861,7 +16865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c77e424952cde0459b981db9096774f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 25
+  maxHealth: 50
   currentHealth: 0
   healthSlider: {fileID: 2206091869462736284}
   objectToHide: {fileID: 0}

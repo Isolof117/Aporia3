@@ -304,7 +304,7 @@ public class EnemyMovement : MonoBehaviour
                 {
                     Weapon.currentMode = WeaponBase.ShootingMode.Auto;
                     Weapon.magazineSize = 30;
-                    Weapon.fireRate = 0.3f;
+                    Weapon.fireRate = 1.8f;
                     break;
                 }
             case EnemyType.Medium:
@@ -326,7 +326,7 @@ public class EnemyMovement : MonoBehaviour
                 {
                     Weapon.currentMode = WeaponBase.ShootingMode.Single;
                     Weapon.magazineSize = 10;
-                    Weapon.fireRate = 0.8f;
+                    Weapon.fireRate = 1f;
                     break;
                 }
             default:

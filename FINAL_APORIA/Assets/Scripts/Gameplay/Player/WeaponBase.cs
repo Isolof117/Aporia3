@@ -14,12 +14,15 @@ public class WeaponBase : MonoBehaviour
     public Camera Camera;
     public GameObject[] gunModels;
     public GameObject bulletPrefab;
+    public Loadout playerLoadout;
     public Transform firePoint;
     public GameObject MovingBoxCanvas;
     public QTE_MovingBox MovingBox;
     private Coroutine movingBoxQTERoutine;
     public GameObject SkillCheckCanvas;
     public SkillCheck KeyInputs;
+    public AudioSource Audio;
+    public AudioClip[] GunSounds;
 
     [Header("Bullet Attributes")]
     public float bulletVelocity, bulletSpread, fireRate, nextFireTime;
@@ -39,7 +42,7 @@ public class WeaponBase : MonoBehaviour
     public float reloadTime;
     public int magazineSize, bulletsLeft;
     public bool isReloading;
-    public AudioSource ReloadAudio;
+    
 
     // UI
     //public TextMeshProUGUI QTEPopUp;
@@ -234,11 +237,13 @@ public class WeaponBase : MonoBehaviour
         {
             case ShootingMode.Auto:
                 FireBullet();
+                Audio.PlayOneShot(GunSounds[0]);
                 nextFireTime = Time.time + fireRate;
                 break;
 
             case ShootingMode.Single:
                 FireBullet();
+                Audio.PlayOneShot(GunSounds[1]);
                 nextFireTime = Time.time + fireRate;
                 break;
 
@@ -259,14 +264,27 @@ public class WeaponBase : MonoBehaviour
         // Fix Bullet Orientation
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
 
+        if (isAiControlled)
+        {
+            bullet.GetComponent<Bullet>().damage = 5;
+        }
+        else if (playerLoadout.primaryActive)
+        {
+            bullet.GetComponent<Bullet>().damage = 6;
+        }
+        else if (playerLoadout.secondaryActive)
+        {
+            bullet.GetComponent<Bullet>().damage = 15;
+        }
+
         bullet.transform.forward = shotDirection;
 
         bullet.GetComponent<Rigidbody>().AddForce(shotDirection * bulletVelocity, ForceMode.Impulse);
 
-        Debug.DrawRay(firePoint.position, shotDirection * 10f, Color.red, 1f);
+        Debug.DrawRay(firePoint.position, shotDirection * 10f, Color.red, 0.5f);
 
         StartCoroutine(DestroyBullet(bullet, lifeTime));
-    }
+    } 
 
     private IEnumerator FireBurst()
     {
@@ -277,6 +295,7 @@ public class WeaponBase : MonoBehaviour
         for (int i = 0; i < bulletsToFire; i++)
         {
             FireBullet();
+            Audio.PlayOneShot(GunSounds[2]);
 
             if (i < bulletsToFire - 1)
             {

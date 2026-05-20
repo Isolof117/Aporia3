@@ -53,7 +53,7 @@ public class QTE_MovingBox : MonoBehaviour
 
                     int soundIndex = widthPointer;
 
-                    currentWeapon.ReloadAudio.PlayOneShot(ReloadSounds[soundIndex]);
+                    currentWeapon.Audio.PlayOneShot(ReloadSounds[soundIndex]);
 
                 }
                 else
