@@ -51,13 +51,6 @@ public class EnemyMovement : MonoBehaviour
 
     [SerializeField] private GameObject deathPickUp;
 
-    [Header("Audio")]
-
-    [SerializeField] private AudioSource enemyAudio;
-
-    [SerializeField] private AudioClip hitMarkerClip;
-
-
     [Header("Other")]
 
     [SerializeField] private bool isIdle = false;
@@ -122,7 +115,6 @@ public class EnemyMovement : MonoBehaviour
         //Subscribe to events
 
         healthScript.OnDeath += HandleEnemyDeath;
-        healthScript.OnDamage += HandleEnemyDamage;
     }
 
     // Update is called once per frame
@@ -305,6 +297,7 @@ public class EnemyMovement : MonoBehaviour
 
     void DetermineEnemyType()
     {
+        
         switch (enemyType)
         {
             case EnemyType.Heavy:
@@ -419,13 +412,6 @@ public class EnemyMovement : MonoBehaviour
         Die();
     }
 
-    void HandleEnemyDamage()
-    {
-        enemyAudio.pitch = Random.Range(0.8f, 1.2f);
-
-        enemyAudio.PlayOneShot(hitMarkerClip);
-    }
-
     void Die()
     {
         Destroy(gameObject);
@@ -484,6 +470,5 @@ public class EnemyMovement : MonoBehaviour
         //Unsubscribe to events
 
         healthScript.OnDeath -= HandleEnemyDeath;
-        healthScript.OnDamage -= HandleEnemyDamage;
     }
 }

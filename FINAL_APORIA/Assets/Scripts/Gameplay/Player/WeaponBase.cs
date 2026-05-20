@@ -12,6 +12,7 @@ public class WeaponBase : MonoBehaviour
 
     [Header("Assets")]
     public Camera Camera;
+    public GameObject[] gunModels;
     public GameObject bulletPrefab;
     public Transform firePoint;
     public GameObject MovingBoxCanvas;
@@ -117,11 +118,10 @@ public class WeaponBase : MonoBehaviour
         nextFireTime = Time.time;
         isShooting = false;
     }
-   
+
     void QTESelect()
     {
         QTEShown = true;
-        isReloading = true;
         Debug.Log("QTE Shown: " + QTEShown);
 
         int Choice = Random.Range(0, 2);
@@ -204,7 +204,7 @@ public class WeaponBase : MonoBehaviour
         {
             SkillCheckCanvas.SetActive(false);
         }
-        
+
         if (KeyInputs != null)
         {
             KeyInputs.isVisible = false;
@@ -263,7 +263,7 @@ public class WeaponBase : MonoBehaviour
 
         bullet.GetComponent<Rigidbody>().AddForce(shotDirection * bulletVelocity, ForceMode.Impulse);
 
-        // Debug.DrawRay(firePoint.position, shotDirection * 10f, Color.red, 1f);
+        Debug.DrawRay(firePoint.position, shotDirection * 10f, Color.red, 1f);
 
         StartCoroutine(DestroyBullet(bullet, lifeTime));
     }

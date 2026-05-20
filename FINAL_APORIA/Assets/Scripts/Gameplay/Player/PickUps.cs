@@ -11,7 +11,6 @@ public class PickUps : MonoBehaviour
 {
     // Weapon data from enemy
     public WeaponData data;
-    private Loadout PlayerLoadout;
     private Material PickupColour;
 
     [SerializeField] private float rotationSpeed;
@@ -19,7 +18,6 @@ public class PickUps : MonoBehaviour
     private void Awake()
     {
         PickupColour = this.gameObject.GetComponent<Material>();
-
         data = GetComponent<WeaponData>();
 
         SelectPickupType();
@@ -44,7 +42,7 @@ public class PickUps : MonoBehaviour
                 this.gameObject.tag = "HealthPickup";
                 PickupColour.SetColor("_Color", Color.green);
                 break;
-                
+
             case 1:
                 this.gameObject.tag = "WeaponPickup";
                 PickupColour.SetColor("_Color", Color.gray);
@@ -54,7 +52,7 @@ public class PickUps : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the player collides with the pickup
+        // Check if only the player collides with the pickup
         if (!other.CompareTag("Player"))
             return;
 
@@ -66,6 +64,13 @@ public class PickUps : MonoBehaviour
             // Add health pickup
             Health objectHealth = other.GetComponentInChildren<Health>();
 
+            WeaponBase currentWeapon = other.GetComponentInChildren<WeaponBase>();
+
+            if (currentWeapon == null)
+            {
+                Debug.LogError("Could not find player's WeaponBase!");
+                return;
+            }
             if (objectHealth == null)
             {
                 Debug.LogError("Could not find player's health!");
@@ -77,6 +82,7 @@ public class PickUps : MonoBehaviour
             objectHealth.TakeDamage(-30);
         }
 
+        // Get the weapon data from the enemy and apply it to the player's current weapon
         if (this.gameObject.CompareTag("WeaponPickup"))
         {
             WeaponBase currentWeapon = other.GetComponentInChildren<WeaponBase>();
@@ -113,9 +119,9 @@ public class PickUps : MonoBehaviour
 
                 Debug.Log("Overwrote primary weapon");
             }
-
-            //Destroy
-            Destroy(gameObject);
         }
+
+        //Destroy
+        Destroy(gameObject);
     }
 }
