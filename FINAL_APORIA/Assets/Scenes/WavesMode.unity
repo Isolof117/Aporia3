@@ -837,6 +837,8 @@ MonoBehaviour:
   playerWeapon: {fileID: 433014620}
   SecondaryWeaponData: {fileID: 0}
   PrimaryWeaponData: {fileID: 0}
+  rifleCanvas: {fileID: 1157892889}
+  pistolCanvas: {fileID: 864149711}
 --- !u!1 &99794565
 GameObject:
   m_ObjectHideFlags: 0
@@ -4175,7 +4177,7 @@ MonoBehaviour:
   KeyInputs: {fileID: 887439672}
   bulletVelocity: 30
   bulletSpread: 0.2
-  fireRate: 1
+  fireRate: 0.3
   nextFireTime: 0
   isAiControlled: 0
   target: {fileID: 0}
@@ -16814,7 +16816,7 @@ MonoBehaviour:
   SkillCheckCanvas: {fileID: 0}
   KeyInputs: {fileID: 0}
   bulletVelocity: 30
-  bulletSpread: 1.5
+  bulletSpread: 1.2
   fireRate: 0
   nextFireTime: 0
   isAiControlled: 1
@@ -16826,7 +16828,7 @@ MonoBehaviour:
   bulletsLeft: 0
   isReloading: 0
   ReloadAudio: {fileID: 0}
-  currentMode: 0
+  currentMode: 1
 --- !u!195 &8976609277826305723
 NavMeshAgent:
   m_ObjectHideFlags: 0
