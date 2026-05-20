@@ -51,6 +51,11 @@ public class EnemyMovement : MonoBehaviour
 
     [SerializeField] private GameObject deathPickUp;
 
+    [Header("SFXs")]
+
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] AudioClip hitClip;
+
     [Header("Other")]
 
     [SerializeField] private bool isIdle = false;
@@ -115,6 +120,7 @@ public class EnemyMovement : MonoBehaviour
         //Subscribe to events
 
         healthScript.OnDeath += HandleEnemyDeath;
+        healthScript.OnDamage += HandleEnemyDamage;
     }
 
     // Update is called once per frame
@@ -400,6 +406,11 @@ public class EnemyMovement : MonoBehaviour
             Weapon.Fire();
     }
 
+    void HandleEnemyDamage()
+    {
+        audioSource.PlayOneShot(hitClip);
+    }
+
     void HandleEnemyDeath()
     {
         Debug.Log("Enemy Death event called");
@@ -470,5 +481,6 @@ public class EnemyMovement : MonoBehaviour
         //Unsubscribe to events
 
         healthScript.OnDeath -= HandleEnemyDeath;
+        healthScript.OnDamage -= HandleEnemyDamage;
     }
 }
