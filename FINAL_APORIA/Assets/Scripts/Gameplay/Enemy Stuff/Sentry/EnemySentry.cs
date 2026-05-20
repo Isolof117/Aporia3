@@ -32,6 +32,9 @@ public class EnemySentry : MonoBehaviour
 
     [SerializeField] private int bulletsPerBurst = 5;
 
+
+    public bool isActive = false;
+
     private bool isAttacking = false;
 
     [Header("Scanning State")]
@@ -185,11 +188,12 @@ public class EnemySentry : MonoBehaviour
             
         }
         
+        //DEBUG ONLY
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Activate();
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    Activate();
+        //}
     }
 
 
@@ -279,11 +283,15 @@ public class EnemySentry : MonoBehaviour
 
             yield return null;
         }
+
+        isActive = false;
     }
 
     public void Activate()
     {
         sentryCanvas.enabled = true;
+
+        isActive = true;
 
         healthScript.ResetHealth();
 
