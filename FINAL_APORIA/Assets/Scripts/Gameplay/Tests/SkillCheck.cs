@@ -58,7 +58,7 @@ public class SkillCheck : MonoBehaviour
 
                     int soundIndex = currentKey;
 
-                    currentWeapon.ReloadAudio.PlayOneShot(ReloadSounds[soundIndex]);
+                    currentWeapon.Audio.PlayOneShot(ReloadSounds[soundIndex]);
 
                     currentKey++;
 

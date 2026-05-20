@@ -623,7 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c77e424952cde0459b981db9096774f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 300
+  maxHealth: 100
   currentHealth: 0
   healthSlider: {fileID: 991196345}
   objectToHide: {fileID: 2043653505}
@@ -839,6 +839,9 @@ MonoBehaviour:
   PrimaryWeaponData: {fileID: 0}
   rifleCanvas: {fileID: 1157892889}
   pistolCanvas: {fileID: 864149711}
+  WeaponSwap: {fileID: 8300000, guid: 61e341411497bcf4e809fb1f363aa8b9, type: 3}
+  primaryActive: 0
+  secondaryActive: 0
 --- !u!1 &99794565
 GameObject:
   m_ObjectHideFlags: 0
@@ -4125,6 +4128,7 @@ GameObject:
   - component: {fileID: 433014622}
   - component: {fileID: 433014620}
   - component: {fileID: 433014623}
+  - component: {fileID: 433014624}
   m_Layer: 3
   m_Name: Player Gun
   m_TagString: Weapon
@@ -4170,11 +4174,17 @@ MonoBehaviour:
   - {fileID: 1580537111}
   bulletPrefab: {fileID: 3459593287664729163, guid: c9a0e60f7eebc714c85304643934b73c,
     type: 3}
+  playerLoadout: {fileID: 81473402}
   firePoint: {fileID: 342090825}
   MovingBoxCanvas: {fileID: 2362691423126922472}
   MovingBox: {fileID: 7952951526843707555}
   SkillCheckCanvas: {fileID: 1084634198}
   KeyInputs: {fileID: 887439672}
+  Audio: {fileID: 433014624}
+  GunSounds:
+  - {fileID: 8300000, guid: 3d50f51310a58ad46b689ea4b4e88662, type: 3}
+  - {fileID: 8300000, guid: f71b6600ebc7a7b40b8844f0632caa64, type: 3}
+  - {fileID: 8300000, guid: a32f75c0d11f4304ca5acc277241e1d9, type: 3}
   bulletVelocity: 30
   bulletSpread: 0.2
   fireRate: 0.3
@@ -4187,7 +4197,6 @@ MonoBehaviour:
   magazineSize: 20
   bulletsLeft: 0
   isReloading: 0
-  ReloadAudio: {fileID: 617689722}
   currentMode: 0
 --- !u!33 &433014622
 MeshFilter:
@@ -4220,6 +4229,103 @@ MonoBehaviour:
   - 75
   - 50
   ReloadSounds: []
+--- !u!82 &433014624
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433014618}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.522
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 135
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &461698405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4963,7 +5069,6 @@ GameObject:
   - component: {fileID: 617689723}
   - component: {fileID: 617689722}
   - component: {fileID: 617689725}
-  - component: {fileID: 617689724}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -4984,13 +5089,13 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: df038adaab735cc4583651ee887c0d35, type: 3}
   m_Resource: {fileID: 8300000, guid: df038adaab735cc4583651ee887c0d35, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.6
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 135
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -5083,103 +5188,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &617689724
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 617689721}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &617689725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5192,7 +5200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5770adb0fcf690447832e87b44a2c9d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 617689724}
+  audioSource: {fileID: 617689722}
   hoverSound: {fileID: 8300000, guid: c9ee494594f83d94c8001bb85e0ce0bf, type: 3}
   clickSound: {fileID: 8300000, guid: d3a041b3b65e2c242983a1f892613b64, type: 3}
 --- !u!1001 &621962251
@@ -7540,10 +7548,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReloadSounds:
-  - {fileID: 8300000, guid: 5666a20c9ed358043ac042e851eda3c2, type: 3}
-  - {fileID: 8300000, guid: 0b557ab35a132ac44a500141932fa96a, type: 3}
-  - {fileID: 8300000, guid: 4249a37dc1497b34a87c65038705e727, type: 3}
-  - {fileID: 8300000, guid: 47a174948f084b54082bacdcd3396f84, type: 3}
+  - {fileID: 8300000, guid: d3a041b3b65e2c242983a1f892613b64, type: 3}
+  - {fileID: 8300000, guid: d3a041b3b65e2c242983a1f892613b64, type: 3}
+  - {fileID: 8300000, guid: d3a041b3b65e2c242983a1f892613b64, type: 3}
+  - {fileID: 8300000, guid: 873ce75e58d021240b36aa1502409926, type: 3}
   Sequence: {fileID: 1084634199}
   currentKey: 0
   isVisible: 0
@@ -14253,7 +14261,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.33333334
+  m_VoxelSize: 0.2
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 993dfd42cd64952409a21fad76842d79, type: 2}
   m_BuildHeightMesh: 0
@@ -16647,11 +16655,11 @@ MonoBehaviour:
   - 75
   - 50
   ReloadSounds:
-  - {fileID: 8300000, guid: 5666a20c9ed358043ac042e851eda3c2, type: 3}
-  - {fileID: 8300000, guid: 47a174948f084b54082bacdcd3396f84, type: 3}
-  - {fileID: 8300000, guid: 4249a37dc1497b34a87c65038705e727, type: 3}
-  - {fileID: 8300000, guid: 0b557ab35a132ac44a500141932fa96a, type: 3}
-  - {fileID: 8300000, guid: 5666a20c9ed358043ac042e851eda3c2, type: 3}
+  - {fileID: 8300000, guid: d3a041b3b65e2c242983a1f892613b64, type: 3}
+  - {fileID: 8300000, guid: d3a041b3b65e2c242983a1f892613b64, type: 3}
+  - {fileID: 8300000, guid: d3a041b3b65e2c242983a1f892613b64, type: 3}
+  - {fileID: 8300000, guid: d3a041b3b65e2c242983a1f892613b64, type: 3}
+  - {fileID: 8300000, guid: 873ce75e58d021240b36aa1502409926, type: 3}
 --- !u!1 &8035855833761036318
 GameObject:
   m_ObjectHideFlags: 0
@@ -16813,11 +16821,17 @@ MonoBehaviour:
   gunModels: []
   bulletPrefab: {fileID: 2157706488818188934, guid: a10f1561d1b83d84686e44d747f28d68,
     type: 3}
+  playerLoadout: {fileID: 81473402}
   firePoint: {fileID: 5684510606733441204}
   MovingBoxCanvas: {fileID: 0}
   MovingBox: {fileID: 0}
   SkillCheckCanvas: {fileID: 0}
   KeyInputs: {fileID: 0}
+  Audio: {fileID: 9045413284008903421}
+  GunSounds:
+  - {fileID: 8300000, guid: 3d50f51310a58ad46b689ea4b4e88662, type: 3}
+  - {fileID: 8300000, guid: f71b6600ebc7a7b40b8844f0632caa64, type: 3}
+  - {fileID: 8300000, guid: a32f75c0d11f4304ca5acc277241e1d9, type: 3}
   bulletVelocity: 30
   bulletSpread: 1.2
   fireRate: 0
@@ -16830,7 +16844,6 @@ MonoBehaviour:
   magazineSize: 7
   bulletsLeft: 0
   isReloading: 0
-  ReloadAudio: {fileID: 0}
   currentMode: 1
 --- !u!195 &8976609277826305723
 NavMeshAgent:
@@ -16866,7 +16879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c77e424952cde0459b981db9096774f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 25
+  maxHealth: 50
   currentHealth: 0
   healthSlider: {fileID: 2206091869462736284}
   objectToHide: {fileID: 0}
