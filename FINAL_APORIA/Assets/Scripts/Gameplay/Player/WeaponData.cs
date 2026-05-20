@@ -44,7 +44,7 @@ public class WeaponData : MonoBehaviour
 
     public void PistolData()
     {
-        fireRate = 0.8f;
+        fireRate = 0.6f;
         magazineSize = 20;
         bulletVelocity = 30;
         bulletsLeft = magazineSize;

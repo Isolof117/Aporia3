@@ -30,22 +30,20 @@ public class PickUps : MonoBehaviour
 
     private void Update()
     {
-        //transform.Rotate(rotationSpeed * Time.deltaTime, rotationSpeed * Time.deltaTime, rotationSpeed * Time.deltaTime);
+        transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
     }
 
     private void SelectPickupType()
     {
-        int choice = Random.Range(0, 2);
+        int choice = Random.Range(0, 1);
         switch (choice)
         {
             case 0:
                 this.gameObject.tag = "HealthPickup";
-                PickupColour.SetColor("_Color", Color.green);
                 break;
 
             case 1:
                 this.gameObject.tag = "WeaponPickup";
-                PickupColour.SetColor("_Color", Color.gray);
                 break;
         }
     }

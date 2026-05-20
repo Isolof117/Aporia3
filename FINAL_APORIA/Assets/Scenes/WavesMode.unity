@@ -822,6 +822,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &81473402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81473381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 191638309979ded4e9544a7826493326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerWeapon: {fileID: 433014620}
+  SecondaryWeaponData: {fileID: 0}
+  PrimaryWeaponData: {fileID: 0}
 --- !u!1 &99794565
 GameObject:
   m_ObjectHideFlags: 0
@@ -2641,6 +2656,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2937952180854084144, guid: 691d201409042b143af4574240386e30,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 81473402}
+    - targetCorrespondingSourceObject: {fileID: 2937952180854084144, guid: 691d201409042b143af4574240386e30,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 81473389}
     - targetCorrespondingSourceObject: {fileID: 2937952180854084144, guid: 691d201409042b143af4574240386e30,
         type: 3}
@@ -4144,7 +4163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 283631894}
-  gunModels: []
+  gunModels:
+  - {fileID: 1200265892}
+  - {fileID: 1580537111}
   bulletPrefab: {fileID: 3459593287664729163, guid: c9a0e60f7eebc714c85304643934b73c,
     type: 3}
   firePoint: {fileID: 342090825}
@@ -9011,6 +9032,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 129511955}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1200265892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 083d8c786d73fa94cb469b047d037890,
+    type: 3}
+  m_PrefabInstance: {fileID: 1965356539}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1220163650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11768,6 +11795,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576647003}
   m_Mesh: {fileID: -3380703504175288488, guid: fee74ab63fb53824495d941129f052fe, type: 3}
+--- !u!1 &1580537111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7b471812197b59a4ebd625d2c6e59f95,
+    type: 3}
+  m_PrefabInstance: {fileID: 129255437}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1582582004
 PrefabInstance:
   m_ObjectHideFlags: 0
