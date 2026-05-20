@@ -139,7 +139,7 @@ public class WaveSystem : MonoBehaviour
         int doorCount =
             Mathf.Clamp(currentWave + 1, 2, doors.Length);
 
-        int sentryCount = Mathf.Clamp(currentWave - 1, 0, sentries.Length); 
+        int sentryCount = Mathf.Clamp(currentWave / 2, 0, sentries.Length); // 0 , 1, 1, 2, 2, 3, 3
 
         yield return StartCoroutine(
             BeginWave(currentWave, doorCount, sentryCount)
@@ -256,7 +256,7 @@ public class WaveSystem : MonoBehaviour
         {
             int rand = Random.Range(0, sentries.Length);
 
-            if(sentries[rand].state == EnemySentry.SentryState.DEACTIVATED)
+            if(!sentries[rand].isActive)
             {
                 sentries[rand].Activate();
                 activeSentryCount++; 
