@@ -13,6 +13,11 @@ public class WaveSystem : MonoBehaviour
     [SerializeField] private float doorMoveAmount = 10f;
     [SerializeField] private float doorMoveSpeed = 2f;
 
+    [Header("Door Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip doorOpenSFX;
+    [SerializeField] private AudioClip doorCloseSFX;
+
     [Header("Enemy Setup")]
     [SerializeField] private GameObject enemyTemplate;
     [SerializeField] private float spawnOffsetBehindDoor = 2f;
@@ -30,7 +35,7 @@ public class WaveSystem : MonoBehaviour
     private readonly List<GameObject> spawnedEnemies =
         new List<GameObject>();
 
-    //Track Sentries
+    // Track Sentries
     private int activeSentryCount = 0;
 
     // Stores currently opened doors
@@ -70,6 +75,7 @@ public class WaveSystem : MonoBehaviour
     {
         EnemySentry.OnSentryDeactivated += HandleSentryDeactivated;
     }
+
     private void OnDisable()
     {
         EnemySentry.OnSentryDeactivated -= HandleSentryDeactivated;
@@ -79,6 +85,7 @@ public class WaveSystem : MonoBehaviour
     {
         activeSentryCount = Mathf.Max(0, activeSentryCount - 1);
     }
+
     private void Update()
     {
         // Remove entries whose Enemy-tagged child is gone
@@ -106,7 +113,9 @@ public class WaveSystem : MonoBehaviour
             return;
 
         // Start next wave when all enemies dead
-        if (spawnedEnemies.Count == 0 && activeSentryCount == 0 && !startingNextWave)
+        if (spawnedEnemies.Count == 0 &&
+            activeSentryCount == 0 &&
+            !startingNextWave)
         {
             waveActive = false;
             startingNextWave = true;
@@ -139,7 +148,8 @@ public class WaveSystem : MonoBehaviour
         int doorCount =
             Mathf.Clamp(currentWave + 1, 2, doors.Length);
 
-        int sentryCount = Mathf.Clamp(currentWave / 2, 0, sentries.Length); // 0 , 1, 1, 2, 2, 3, 3
+        int sentryCount =
+            Mathf.Clamp(currentWave / 2, 0, sentries.Length);
 
         yield return StartCoroutine(
             BeginWave(currentWave, doorCount, sentryCount)
@@ -150,7 +160,8 @@ public class WaveSystem : MonoBehaviour
 
     private IEnumerator BeginWave(
         int waveNumber,
-        int doorCount, int sentryCount)
+        int doorCount,
+        int sentryCount)
     {
         // Set wave text
         if (waveText != null)
@@ -197,8 +208,7 @@ public class WaveSystem : MonoBehaviour
         // Spawn enemies
         SpawnEnemies(selectedDoors);
 
-        //Activate any sentries
-
+        // Activate any sentries
         ActivateSentries(sentryCount);
 
         // Wave now active
@@ -248,18 +258,18 @@ public class WaveSystem : MonoBehaviour
         }
     }
 
-    void ActivateSentries(int amount)
+    private void ActivateSentries(int amount)
     {
         amount = Mathf.Clamp(amount, 0, sentries.Length);
 
-        for(int i = 0; i < amount; i++)
+        for (int i = 0; i < amount; i++)
         {
             int rand = Random.Range(0, sentries.Length);
 
-            if(!sentries[rand].isActive)
+            if (!sentries[rand].isActive)
             {
                 sentries[rand].Activate();
-                activeSentryCount++; 
+                activeSentryCount++;
             }
             else
             {
@@ -300,6 +310,12 @@ public class WaveSystem : MonoBehaviour
 
     private IEnumerator MoveDoorsUp(int[] activeDoors)
     {
+        // Play open sound
+        if (audioSource != null && doorOpenSFX != null)
+        {
+            audioSource.PlayOneShot(doorOpenSFX);
+        }
+
         float t = 0f;
 
         Vector3[] startPositions =
@@ -355,6 +371,12 @@ public class WaveSystem : MonoBehaviour
 
     private IEnumerator MoveDoorsDown(int[] activeDoors)
     {
+        // Play close sound
+        if (audioSource != null && doorCloseSFX != null)
+        {
+            audioSource.PlayOneShot(doorCloseSFX);
+        }
+
         float t = 0f;
 
         Vector3[] startPositions =
