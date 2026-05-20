@@ -7,6 +7,7 @@ public class WeaponData : MonoBehaviour
     public float bulletVelocity, bulletSpread, fireRate;
     public int magazineSize, bulletsLeft;
     public int bulletsPerBurst;
+    public Bullet bullet;
 
     WeaponBase.ShootingMode weaponMode;
 
@@ -45,7 +46,7 @@ public class WeaponData : MonoBehaviour
     public void PistolData()
     {
         fireRate = 0.6f;
-        magazineSize = 20;
+        magazineSize = 12;
         bulletVelocity = 30;
         bulletsLeft = magazineSize;
         weaponMode = WeaponBase.ShootingMode.Single;
