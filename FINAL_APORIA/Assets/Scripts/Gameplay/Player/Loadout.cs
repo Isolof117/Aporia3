@@ -9,6 +9,7 @@ public class Loadout : MonoBehaviour
     public WeaponBase playerWeapon;
     public WeaponData SecondaryWeaponData;
     public WeaponData PrimaryWeaponData;
+    public GameObject rifleCanvas, pistolCanvas;
     private Vector3 pistolFirePoint;
 
     bool primaryActive, secondaryActive;
@@ -120,6 +121,9 @@ public class Loadout : MonoBehaviour
             playerWeapon.gunModels[0].SetActive(true);
             playerWeapon.gunModels[1].SetActive(false);
 
+            rifleCanvas.SetActive(true);
+            pistolCanvas.SetActive(false);
+
             primaryActive = true;
             secondaryActive = false;
         }
@@ -147,6 +151,9 @@ public class Loadout : MonoBehaviour
 
             playerWeapon.gunModels[0].SetActive(false);
             playerWeapon.gunModels[1].SetActive(true);
+
+            pistolCanvas.SetActive(true);
+            rifleCanvas.SetActive(false);
 
             Debug.Log("Moved fire point");
             pistolFirePoint.x = -0.013f;
