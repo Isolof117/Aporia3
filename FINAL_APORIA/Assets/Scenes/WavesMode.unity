@@ -856,7 +856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &99794566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8724,7 +8724,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 15741302854d8a7419be7bfad9755b41, type: 2}
-  m_sharedMaterial: {fileID: -8767818375644566829, guid: 3331767bd7a1fe74499f2ed7a61c2ed2,
+  m_sharedMaterial: {fileID: -1016453340717351073, guid: 15741302854d8a7419be7bfad9755b41,
     type: 2}
   m_fontSharedMaterials:
   - {fileID: -8767818375644566829, guid: 3331767bd7a1fe74499f2ed7a61c2ed2, type: 2}
@@ -15519,6 +15519,8 @@ MonoBehaviour:
   searchAngle: 45
   deathPickUp: {fileID: 5754219478811335100, guid: cc25759ab8978b94cbfaa41f31a74d0d,
     type: 3}
+  audioSource: {fileID: 9045413284008903421}
+  hitClip: {fileID: 8300000, guid: 5d93a8b74ec58fe4d8ea8082c313c5a6, type: 3}
   isIdle: 0
   Weapon: {fileID: 8914086698949372397}
   enemyAlertBox: {fileID: 6891114188277692270}
@@ -15826,8 +15828,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -78, y: -92}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -102, y: -92.0058}
+  m_SizeDelta: {x: 471.4156, y: 50.0116}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &4463284441269338481
 Transform:
@@ -16233,8 +16235,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press [RMB] when the bar is over the goal
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 15741302854d8a7419be7bfad9755b41, type: 2}
+  m_sharedMaterial: {fileID: -1016453340717351073, guid: 15741302854d8a7419be7bfad9755b41,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -16265,7 +16268,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
