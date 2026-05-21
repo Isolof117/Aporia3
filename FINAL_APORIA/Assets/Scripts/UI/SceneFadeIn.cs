@@ -12,6 +12,9 @@ public class SceneFadeIn : MonoBehaviour
     {
         if (fadeImage != null)
         {
+            // FORCE ENABLE so it can render even if it started inactive
+            fadeImage.gameObject.SetActive(true);
+
             // Start fully black
             Color c = fadeImage.color;
             c.a = 1f;
@@ -48,7 +51,7 @@ public class SceneFadeIn : MonoBehaviour
         // Stop blocking clicks
         fadeImage.raycastTarget = false;
 
-        // Optional: fully disable the object
+        // Optional: disable after fade
         fadeImage.gameObject.SetActive(false);
     }
 }
